@@ -91,9 +91,9 @@ int main() {
     while (!f.fIn.eof()) {
         for (int i = 0; i < 21; i++) {
             p.fIn >> temp;
-            p.get_obraz(temp);
+            o.get_obraz(temp);
         }
-        p.checkPicture();
-        p.clearVector();
+        o.checkPicture();
+        o.clearVector();
     }
 }
