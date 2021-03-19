@@ -14,7 +14,7 @@ public:
 };
 
 pliki::pliki() {
-    fIn.open("c:\\dane_obrazki.txt");
+    fIn.open("c:\\dane_obrazy.txt");
 }
 
 pliki::~pliki() {
