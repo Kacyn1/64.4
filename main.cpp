@@ -4,61 +4,60 @@
 
 using namespace std;
 
-class file {
+class pliki {
 
 public:
     ifstream fIn;
-    file();
-    ~file();
+    pliki();
+    ~pliki();
 
 };
 
-file::file() {
+pliki::pliki() {
     fIn.open("c:\\dane_obrazki.txt");
 }
 
-file::~file() {
+pliki::~pliki() {
     fIn.close();
 }
 
-class picture {
+class obraz {
 public:
     int whichPicture = 0;
     vector <string> picture;
-    void getPicture(string numbers);
+    void get_obraz(string numbers);
     void checkPicture();
     void clearVector();
 };
 
-void picture::getPicture(string numbers) {
-    picture.push_back(numbers);
+void obraz::get_obraz(string numbers) {
+    obraz.push_back(numbers);
 }
 
 
-void picture::checkPicture() {
+void obraz::checkPicture() {
     int howManyX = 0, howManyY = 0, badX = 0, badY = 0, x, y ;
     whichPicture++;
-    for (int i = 0; i < picture.size() - 1; i++) {
-        for (int j = 0; j < picture.size() - 1; j++) {
+    for (int i = 0; i < obraz.size() - 1; i++) {
+    for (int j = 0; j < obraz.size() - 1; j++) {
+     if (obraz[i][j] == '1') {
+         howManyX++;
+ }
+     if (obraz[j][i] == '1') {
+         howManyY++;
+ }
 
-            if (picture[i][j] == '1') {
-                howManyX++;
-            }
-            if (picture[j][i] == '1') {
-                howManyY++;
-            }
-
-        }
-        if ((howManyX % 2 == 0 && picture[i][20] == '1') || (howManyX % 2 == 1 && picture[i][20] == '0')) {
+ }
+        if ((howManyX % 2 == 0 && obraz[i][20] == '1') || (howManyX % 2 == 1 && obraz[i][20] == '0')) {
             badX++;
             y = i;
 
-        }
+ }
 
-        if ((howManyY % 2 == 0 && picture[20][i] == '1') || (howManyY % 2 == 1 && picture[20][i] == '0')) {
+        if ((howManyY % 2 == 0 && obraz[20][i] == '1') || (howManyY % 2 == 1 && obraz[20][i] == '0')) {
             badY++;
             x = i;
-        }
+  }
 
         howManyX = 0;
         howManyY = 0;
@@ -81,18 +80,18 @@ void picture::checkPicture() {
     
 }
 
-void picture::clearVector() {
-    picture.clear();
+void obraz::clearVector() {
+    obraz.clear();
 }
 
 int main() {
-    file f;
-    picture p;
+    plik p;
+    obraz o;
     string temp;
     while (!f.fIn.eof()) {
         for (int i = 0; i < 21; i++) {
-            f.fIn >> temp;
-            p.getPicture(temp);
+            p.fIn >> temp;
+            p.get_obraz(temp);
         }
         p.checkPicture();
         p.clearVector();
